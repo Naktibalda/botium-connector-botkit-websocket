@@ -53,7 +53,7 @@ class BotiumConnectorBotkitWebsocket {
     const message = {
       type: 'message',
       text: messageText,
-      user: 'me',
+      user: this.sessionId,
       channel: 'socket'
     }
 
@@ -69,10 +69,11 @@ class BotiumConnectorBotkitWebsocket {
 
   Stop () {
     debug('Stop called')
+
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         try {
-          this.socket.close(1000, '')
+          this.socket.terminate()
           resolve()
         } catch (err) {
           reject(err)
