@@ -50,7 +50,7 @@ Open the file _botium.json_ in your working directory and add the Botkit chatbot
   "botium": {
     "Capabilities": {
       "PROJECTNAME": "<whatever>",
-      "CONTAINERMODE": "botkit-websocket",
+      "CONTAINERMODE": "@naktibalda/botium-connector-botkit-websocket",
       "BOTKIT_SERVER_URL": "..."
     }
   }
@@ -60,7 +60,7 @@ Botium setup is ready, you can begin to write your [BotiumScript](https://github
 
 ## Supported Capabilities
 
-Set the capability __CONTAINERMODE__ to __botkit-websocket__ to activate this connector.
+Set the capability __CONTAINERMODE__ to __@naktibalda/botium-connector-botkit-websocket__ to activate this connector.
 
 ### BOTKIT_SERVER_URL
 The Botkit server url (without any path, just http/https, servername, port)

@@ -1,5 +1,5 @@
 const debug = require('debug')('botium-connector-botkit-websocket')
-var io = require('socket.io-client')
+const WebSocket = require('ws')
 
 const Capabilities = {
   BOTKIT_SERVER_URL: 'BOTKIT_SERVER_URL'
@@ -22,12 +22,23 @@ class BotiumConnectorBotkitWebsocket {
 
   Build () {
     debug('Build called')
-    this.socket = io.connect(this.caps[Capabilities.BOTKIT_SERVER_URL], {reconnect: true})
-    this.socket.on('message', (encodedMessage) => {
+    const socket = new WebSocket(this.caps[Capabilities.BOTKIT_SERVER_URL])
+    this.socket = socket
+
+    socket.onmessage((encodedMessage) => {
       const message = JSON.parse(encodedMessage)
+      debug('Bot says ' + message.text)
       this.queueBotSays({ sender: 'bot', messageText: message.text })
     })
-    return Promise.resolve()
+
+    return new Promise((resolve, reject) => {
+      socket.onopen(function () {
+        resolve()
+      })
+      socket.onerror(function (err) {
+        reject(err)
+      })
+    })
   }
 
   Start () {
@@ -37,21 +48,26 @@ class BotiumConnectorBotkitWebsocket {
   }
 
   UserSays ({messageText}) {
-    debug('UserSays called')
+    debug('User says ' + messageText)
     const message = {
       type: 'message',
       text: messageText,
       user: 'me',
       channel: 'socket'
     }
-    this.socket.emit('message', JSON.stringify(message))
 
-    return Promise.resolve()
+    return new Promise((resolve, reject) => {
+      this.socket.send(JSON.stringify(message), {}, (err) => {
+        if (err) {
+          reject(err)
+        }
+        resolve()
+      })
+    })
   }
 
   Stop () {
     debug('Stop called')
-
     return Promise.resolve()
   }
 
