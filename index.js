@@ -25,17 +25,17 @@ class BotiumConnectorBotkitWebsocket {
     const socket = new WebSocket(this.caps[Capabilities.BOTKIT_SERVER_URL])
     this.socket = socket
 
-    socket.onmessage((encodedMessage) => {
+    socket.on('message', (encodedMessage) => {
       const message = JSON.parse(encodedMessage)
       debug('Bot says ' + message.text)
       this.queueBotSays({ sender: 'bot', messageText: message.text })
     })
 
     return new Promise((resolve, reject) => {
-      socket.onopen(function () {
+      socket.on('open', function () {
         resolve()
       })
-      socket.onerror(function (err) {
+      socket.on('error', function (err) {
         reject(err)
       })
     })
