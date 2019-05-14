@@ -9,6 +9,8 @@ class BotiumConnectorBotkitWebsocket {
   constructor ({ queueBotSays, caps }) {
     this.queueBotSays = queueBotSays
     this.caps = caps
+    this.counter = 1
+    this.sessionIdPrefix = 'test' + new Date().getTime()
   }
 
   Validate () {
