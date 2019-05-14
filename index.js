@@ -22,6 +22,13 @@ class BotiumConnectorBotkitWebsocket {
 
   Build () {
     debug('Build called')
+  }
+
+  Start () {
+    debug('Start called')
+    this.sessionId = this.sessionIdPrefix + this.counter
+    this.counter++
+
     const socket = new WebSocket(this.caps[Capabilities.BOTKIT_SERVER_URL])
     this.socket = socket
 
@@ -39,12 +46,6 @@ class BotiumConnectorBotkitWebsocket {
         reject(err)
       })
     })
-  }
-
-  Start () {
-    debug('Start called')
-
-    return Promise.resolve()
   }
 
   UserSays ({messageText}) {
@@ -68,7 +69,16 @@ class BotiumConnectorBotkitWebsocket {
 
   Stop () {
     debug('Stop called')
-    return Promise.resolve()
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          this.socket.close(1000, '')
+          resolve()
+        } catch (err) {
+          reject(err)
+        }
+      }, 1000)
+    })
   }
 
   Clean () {
