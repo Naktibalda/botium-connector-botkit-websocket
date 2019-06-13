@@ -36,8 +36,12 @@ class BotiumConnectorBotkitWebsocket {
 
     socket.on('message', (encodedMessage) => {
       const message = JSON.parse(encodedMessage)
-      debug('Bot says ' + message.text)
-      this.queueBotSays({ sender: 'bot', messageText: message.text })
+      if (message.text) {
+        debug('Bot says ' + message.text)
+        this.queueBotSays({ sender: 'bot', messageText: message.text })
+      } else {
+        debug('Received Websocket Message without text: ' + encodedMessage)
+      }
     })
 
     return new Promise((resolve, reject) => {
