@@ -54,7 +54,7 @@ class BotiumConnectorBotkitWebsocket {
     })
   }
 
-  UserSays ({messageText}) {
+  UserSays ({ messageText }) {
     debug('User says ' + messageText)
     const message = {
       type: 'message',
