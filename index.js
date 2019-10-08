@@ -56,8 +56,7 @@ class BotiumConnectorBotkitWebsocket {
           }).join(',')
           debug('Bot displays buttons ' + buttonText)
         }
-
-        const botMsg = { sender: 'bot', messageText, buttons }
+        const botMsg = { sender: 'bot', sourceData: message, messageText, buttons }
         this.queueBotSays(botMsg)
       } else {
         debug('Received Websocket Message without text: ' + encodedMessage)

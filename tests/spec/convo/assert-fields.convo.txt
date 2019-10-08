@@ -1,0 +1,8 @@
+Botium can verify values of websocket message fields
+
+#me
+I want to talk to human
+
+#bot
+Please wait until I transfer you to someone who can help
+JSON_PATH $.frontend_action|talk_to_agent
