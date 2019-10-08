@@ -74,7 +74,7 @@ class BotiumConnectorBotkitWebsocket {
     })
   }
 
-  UserSays ({ messageText, buttons }) {
+  UserSays ({ messageText, buttons, SET_FIELD }) {
     if (buttons && buttons.length > 0) {
       const buttonText = buttons[0].text.toLowerCase()
 
@@ -94,6 +94,11 @@ class BotiumConnectorBotkitWebsocket {
       text: messageText,
       user: this.sessionId,
       channel: 'socket'
+    }
+
+    if (typeof SET_FIELD === 'object') {
+      debug('User sets message fields ' + JSON.stringify(SET_FIELD))
+      Object.assign(message, SET_FIELD)
     }
 
     return new Promise((resolve, reject) => {

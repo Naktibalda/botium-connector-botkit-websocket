@@ -1,0 +1,9 @@
+Botium can set fields of websocket messages
+
+#me
+
+UPDATE_CUSTOM SET_FIELD|type|hello
+UPDATE_CUSTOM SET_FIELD|name|John
+
+#bot
+Hi, John
