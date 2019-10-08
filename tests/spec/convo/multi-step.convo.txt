@@ -1,0 +1,7 @@
+Botium can talk to Botkit
+
+#me
+sample
+
+#bot
+I heard a sample message.

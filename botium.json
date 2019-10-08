@@ -1,0 +1,10 @@
+{
+  "botium": {
+    "Capabilities": {
+      "PROJECTNAME": "botium-connector-botkit-websocket",
+      "BOTKIT_SERVER_URL": "ws://localhost:3000"
+    },
+    "Sources": {},
+    "Envs": {}
+  }
+}

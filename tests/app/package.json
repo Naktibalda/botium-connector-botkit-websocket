@@ -1,0 +1,13 @@
+{
+  "name": "botkit-botium-test-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "botbuilder-adapter-web": "^1.0.4",
+    "botkit": "^4.5.0"
+  }
+}

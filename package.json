@@ -6,7 +6,8 @@
   "module": "dist/botium-connector-botkit-websocket-es.js",
   "scripts": {
     "build": "npm run eslint && rollup -c",
-    "eslint": "eslint index.js"
+    "eslint": "eslint index.js",
+    "test": "mocha tests/spec/ --exit"
   },
   "repository": {
     "type": "git",
@@ -19,12 +20,15 @@
     "@babel/node": "^7.6.2",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
+    "botium-bindings": "^2.0.18",
+    "chai": "^4.2.0",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "mocha": "^6.2.1",
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
