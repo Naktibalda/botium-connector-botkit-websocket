@@ -1,6 +1,6 @@
 {
   "name": "botium-connector-botkit-websocket",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Botium Connector for Botkit via websockets",
   "main": "dist/botium-connector-botkit-websocket-cjs.js",
   "module": "dist/botium-connector-botkit-websocket-es.js",
