@@ -1,4 +1,4 @@
-Botium can see quick reply buttons
+Botium can see and use quick reply buttons
 
 #me
 quick
@@ -6,3 +6,9 @@ quick
 #bot
 Here are some quick replies
 BUTTONS Foo|Bar
+
+#me
+BUTTON foo
+
+#bot
+You chose Foo

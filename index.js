@@ -11,6 +11,8 @@ class BotiumConnectorBotkitWebsocket {
     this.caps = caps
     this.counter = 1
     this.sessionIdPrefix = 'test' + new Date().getTime()
+    // buttons returned by the last bot response
+    this.activeButtons = {}
   }
 
   Validate () {
@@ -43,6 +45,7 @@ class BotiumConnectorBotkitWebsocket {
           payload: r.payload
         }
       })
+      this.activeButtons = buttons
       if (messageText || buttons) {
         if (messageText) {
           debug('Bot says ' + messageText)
@@ -71,8 +74,21 @@ class BotiumConnectorBotkitWebsocket {
     })
   }
 
-  UserSays ({ messageText }) {
-    debug('User says ' + messageText)
+  UserSays ({ messageText, buttons }) {
+    if (buttons && buttons.length > 0) {
+      const buttonText = buttons[0].text.toLowerCase()
+
+      const matchingButton = this.activeButtons.find(button => {
+        return button.text.toLowerCase() === buttonText
+      })
+      if (matchingButton === undefined) {
+        return Promise.reject(new Error('There is no button ' + buttonText))
+      }
+      messageText = matchingButton.payload
+      debug('User clicked button "' + buttons[0].text + '" which sends text ' + messageText)
+    } else {
+      debug('User says ' + messageText)
+    }
     const message = {
       type: 'message',
       text: messageText,

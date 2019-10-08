@@ -3,19 +3,31 @@
  * Licensed under the MIT License.
  */
 module.exports = function (controller) {
-  controller.hears(new RegExp('quick'), 'message', async (bot, message) => {
+  controller.hears('quick', 'message', async (bot, message) => {
     await bot.reply(message, {
       text: 'Here are some quick replies',
       quick_replies: [
         {
           title: 'Foo',
-          payload: 'foo'
+          payload: 'I want foo'
         },
         {
           title: 'Bar',
-          payload: 'bar'
+          payload: 'I want bar'
         }
       ]
+    })
+  })
+
+  controller.hears('I want foo', 'message', async (bot, message) => {
+    await bot.reply(message, {
+      text: 'You chose Foo',
+    })
+  })
+
+  controller.hears('I want bar', 'message', async (bot, message) => {
+    await bot.reply(message, {
+      text: 'You chose Bar',
     })
   })
 }
