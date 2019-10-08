@@ -1,0 +1,8 @@
+Botium can see quick reply buttons
+
+#me
+quick
+
+#bot
+Here are some quick replies
+BUTTONS Foo|Bar
